@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 public class PetMapper implements RowMapper<Pet> {
 
-
     @Override
     public Pet mapRow(ResultSet rs, int i) throws SQLException {
         return Pet.builder().id(rs.getInt("id")).
@@ -18,6 +17,5 @@ public class PetMapper implements RowMapper<Pet> {
                 s3URL(rs.getString("s3_url")).
                 build();
     }
-
 
 }

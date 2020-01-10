@@ -20,13 +20,9 @@ import java.util.Optional;
 @RestController
 public class PetController {
 
-    @Autowired
-    Dao petDao;
-    @Autowired
-    ExternalDogAPIService externalDogService;
-
-    @Autowired
-    S3UploadService uploadController;
+    @Autowired Dao petDao;
+    @Autowired ExternalDogAPIService externalDogService;
+    @Autowired S3UploadService uploadController;
 
     @RequestMapping(value = "/pet", method = RequestMethod.GET)
     public List<Pet> getAllPets() {
@@ -61,10 +57,15 @@ public class PetController {
         p.ifPresent(delete -> {
             PetS3Request s3Request = PetS3Request.builder().
                     fileName(delete.getS3URL()).build();
-              uploadController.DeleteFileS3(s3Request);
+            uploadController.DeleteFileS3(s3Request);
             petDao.deletePet(delete.getId());
         });
         return "Success";
+    }
+
+    @RequestMapping(value = "/pet/breeds", method = RequestMethod.GET)
+    public List<String> getDogBreeds() {
+        return petDao.fetchBreedNames();
     }
 
 

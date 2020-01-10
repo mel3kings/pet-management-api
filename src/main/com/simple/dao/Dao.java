@@ -11,6 +11,8 @@ public interface Dao {
 
     List<Pet> fetchAll();
 
+    List<String> fetchBreedNames();
+
     int createPet(Pet p);
 
     boolean deletePet(int id);
