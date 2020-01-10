@@ -1,11 +1,18 @@
 package com.simple.dao;
 
-import com.simple.data.Cab;
+import com.simple.data.Pet;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface Dao {
 
-    List<Cab> fetch(List<String> id, LocalDate date);
+    Optional<Pet> fetch(int id);
+
+    List<Pet> fetchAll();
+
+    int createPet(Pet p);
+
+    boolean deletePet(int id);
+
 }
